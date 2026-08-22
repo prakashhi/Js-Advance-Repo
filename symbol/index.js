@@ -83,8 +83,8 @@
 
 // ***** Symbol.isConcatSpreadable *****
 
-const arr = [1,2,3]
-// console.log([4,5].concat(arr))
+// const arr = [1,2,3]
+// // console.log([4,5].concat(arr))
 
- arr[Symbol.isConcatSpreadable] =
- console.log([10,11].concat(arr))
+//  arr[Symbol.isConcatSpreadable] =
+//  console.log([10,11].concat(arr))
