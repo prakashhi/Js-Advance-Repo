@@ -12,11 +12,11 @@
 
 // ***** setTimeout *****
 
-console.log("start");
-setTimeout(() => {
-  console.log("Middle");
-}, 2000);
+// console.log("start");
+// setTimeout(() => {
+//   console.log("Middle");
+// }, 2000);
 
-const start = new Date(); 
-while (new Date() - start < 5000) {}
-console.log("End");
+// const start = new Date(); 
+// while (new Date() - start < 5000) {}
+// console.log("End");
