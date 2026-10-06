@@ -1,11 +1,12 @@
 const http = require("http");
-
+const { createCipheriv, randomBytes } = require("node:crypto");
 const { promisify } = require("node:util");
 const { gzip, createGzip } = require("node:zlib");
 const { writeFile, readFile } = require("fs/promises");
 const { gzipfile } = require("./functions");
 const { basename } = require("node:path");
 const { createReadStream } = require("node:fs");
+
 
 const PORT = 3000;
 
@@ -125,10 +126,17 @@ const server = http.createServer(async (req, res) => {
 
     case "/file-zip":
       {
+        const key = randomBytes(32);
+        const iv = randomBytes(12);
+
+        const cipher = createCipheriv("aes-256-gcm", key, iv);
         // const filename = basename("D:/Study/Code/Practice/Load-files/data.txt")
         createReadStream("D:/Study/Code/Practice/Load-files/data.txt")
           .pipe(createGzip())
-          .pipe(req)
+          .pipe(
+            createWriteStream("D:/Study/Code/Practice/Load-files/data.txt.gz"),
+          )
+          .pipe(res)
           .on("finish", () => {
             console.log("Completed");
           })
